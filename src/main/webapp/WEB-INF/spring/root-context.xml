@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<context:property-placeholder location="/WEB-INF/default.properties" />
+
+	<!--=================== CONFIGURATION ============================-->
+
+	<!-- Postoffice Configuration (Collection)
+		name: Name of the post office, used also as identifier if multiple
+		postoffices are configured.
+		default (true|false): This will be the default post office if multiple
+		are configured. Naturally only one of these should
+		be tagged as default.
+		type (plain|mixed): This determines the type of the post office. Note
+		that "mixed" is the default, which should work for most
+		known imapd's. Note that UW imapd requires type "plain".
+		secure (true|false): Use a secure connection to connect to the postoffice.
+		
+		protocol (imap): protocol of the postoffice (only imap supported atm.)
+		address (IP/Hostname): Address of the postoffice host
+		port (int): The port of the postoffice host (-1 equals 143, the default for IMAP).
+		For using IMAPS (IMAP over SSL) the port should be 993.
+		rootfolder: This should be used to configure a standard prefix for the mail folder.
+		Basically this is useful for UW imapd's, where the store is actually
+		equal to the users home directory. When left empty, the root folder will
+		automatically be the default folder of the store. In case the folder does
+		not exist, the root folder will be automatically set to the default folder
+		of the store.
+		reply-to-domain: The domain(/host) to be used for generating a first reply-to address
+		for the user configuration (username@reply-to-domain).
+		When left empty, the postoffice address will be used.
+	-->
+
+	<bean id="postOffice" class="com.hs.mail.webmail.config.PostOffice">
+		<property name="address" value="${postoffice.address}" />
+		<property name="domain" value="${postoffice.domain}" />
+	</bean>
+
+	<bean id="mta" class="com.hs.mail.webmail.config.MailTransportAgent">
+		<property name="address" value="${mta.address}" />
+		<!-- property name="authenticated" value="true" / -->
+	</bean>
+	
+</beans>
