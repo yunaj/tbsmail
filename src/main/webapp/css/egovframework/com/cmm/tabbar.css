@@ -1,0 +1,29 @@
+.tabbar {
+	width:		100px;
+	padding:	4px;
+}
+
+.tabbutton {
+	width:		100px;
+	background:	#eeeeee;
+	border:		1px solid #ffffff;
+	padding:	1px;
+	text-align:	center;
+	color:      #C0C0C0;
+}
+
+.tabbutton-selected {
+	width:		100px;
+	background-image: url('tabbar.png'); 
+	border:		1px solid #c1c1c1;
+	padding:	1px;
+	text-align:	center;
+	color:      #F26522;
+	font-weight:bold;
+}
+
+.tabbar-textarea {
+	border:		0px solid #ffffff;
+	width:		100%;
+	height: 	80px;
+}

@@ -19,42 +19,68 @@
 	<input type="hidden" name="_criteria" value="<c:out value='${param["criteria"]}' default='subject'/>" />
 	<input type="hidden" name="_term" value="<c:out value='${term}'/>" />
 	<div class="mail-header">
-		<div class="pull-right form-inline">
-			<select name="criteria" class="form-control input-sm">
-		        <option value="subject"><fmt:message key="label.subject"/></option>
-		        <option value="from"><fmt:message key="label.from"/></option>
-		        <option value="to"><fmt:message key="label.to"/></option>
-		        <option value="all"><fmt:message key="menu.filter.all"/></option>
-		        <option value="unread"><fmt:message key="menu.filter.unread"/></option>
-		        <option value="flagged"><fmt:message key="menu.filter.flagged"/></option>
-			</select>
-			<div class="form-group">
-				<input type="text" class="form-control input-sm" name="term" placeholder="Search"/>
-            	<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>
-			</div>
-		</div>
+		<table class="table-search" border="0">
+			<tr align="right">
+				<td>
+					<select name="criteria" class="select" title="search" style="height: 24px; border: #cdcdcd 1px solid;">
+						<option value="subject"><fmt:message key="label.subject" /></option>
+						<option value="from"><fmt:message key="label.from" /></option>
+						<option value="to"><fmt:message key="label.to" /></option>
+						<option value="all"><fmt:message key="menu.filter.all" /></option>
+						<option value="unread"><fmt:message key="menu.filter.unread" /></option>
+						<option value="flagged"><fmt:message key="menu.filter.flagged" /></option>
+					</select> 
+					<input name="term" class="input260" id="textfield" type="text" onClick="this.style.backgroundImage='none'" maxlength="130" placeholder="Search"> 
+					<input type="submit" value='Search' class="but_navy">
+				</td>
+			</tr>
+		</table>
+		
+		<!-- 메일 메뉴 -->
 		<a id="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
-<c:if test="${path != prefs.trashFolder}">
-		<a id="purge" class="btn btn-default btn-sm"><fmt:message key="menu.purge"/></a>
-</c:if>
-		<a id="delete" class="btn btn-default btn-sm"><fmt:message key="menu.delete"/></a>
-<c:if test="${path != prefs.draftFolder && path != prefs.sentMailArchive && path != prefs.trashFolder}">
-		<a id="read" class="btn btn-default btn-sm"><fmt:message key="menu.read"/></a>
-</c:if>
-<c:if test="${path == prefs.sentMailArchive}">
-		<a id="revoke" class="btn btn-default btn-sm"><fmt:message key="menu.revoke"/></a>
-</c:if>
-<c:if test="${path == 'INBOX'}">
-	<a id="upload" class="btn btn-default btn-sm"><fmt:message key="menu.upload.eml"/></a>
-</c:if>
-<c:if test="${path != prefs.draftFolder}">
+		<c:if test="${path != prefs.trashFolder}">
+			<a id="purge" class="btn btn-default btn-sm">
+				<fmt:message key="menu.purge" />
+			</a>
+		</c:if>
+		<a id="delete" class="btn btn-default btn-sm">
+			<fmt:message key="menu.delete" />
+		</a>
+		<c:if test="${path != prefs.draftFolder && path != prefs.sentMailArchive && path != prefs.trashFolder}">
+		<a id="read" class="btn btn-default btn-sm">
+			<fmt:message key="menu.read" />
+		</a>
+		</c:if>
+		<c:if test="${path == prefs.sentMailArchive}">
+		<a id="revoke" class="btn btn-default btn-sm">
+			<fmt:message key="menu.revoke" />
+		</a>
+		</c:if>
+		<c:if test="${path == 'INBOX'}">
+		<a id="upload" class="btn btn-default btn-sm">
+			<fmt:message key="menu.upload.eml" />
+		</a>
+		</c:if>
+		<c:if test="${path != prefs.draftFolder}">
 		<div class="btn-group">
-			<a id="move" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><fmt:message key="menu.move"/> <span class="caret"></span></a>
+			<a id="move" class="btn btn-default btn-sm dropdown-toggle"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><fmt:message
+					key="menu.move" /> <span class="caret"></span></a>
 			<ul class="dropdown-menu"></ul>
 		</div>
-</c:if>
+		</c:if>
+		<!-- 메일 메뉴 끝-->
 	</div>
-	<table id="msg-table" class="table table-hover table-condensed">
+	
+	<table id="msg-table" class="table-hover table-condensed board_type_height">
+		 <colgroup>
+             <col width="32px"/>
+             <col width="32px"/>
+             <col width="21%"/>
+             <col width="*"/>
+             <col width="0px"/>
+             <col width="15%"/>
+         </colgroup>
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkall"/></th>
@@ -146,10 +172,13 @@ $(function() {
 	}
 
 	function showMessage( tr, uid ) {
-		addtab('tab-' + uid).load('message', $.param({path:$('#path').val(),uid:uid}), function() {
+		console.log($(this))
+		tr.removeClass('recent unread');
+		loadtab('main-tab', '', 'message', $.param({path:$('#path').val(),uid:uid}));
+		/* addtab('tab-' + uid).load('message', $.param({path:$('#path').val(),uid:uid}), function() {
 			tr.removeClass('recent unread');
     		showtab('tab-' + uid, $(this).find('.mail-title').text());
-    	});
+    	}); */
 	}
 
 	function showRecipients( uid, callback ) {

@@ -9,224 +9,226 @@
 <meta charset="utf-8">
 <title>BridgeOffice</title>
 
-<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/font-awesome.min.css"/>
 <link rel="stylesheet" href="css/jquery-ui.css"/>
 <link rel="stylesheet" href="css/skin-lion/ui.fancytree.css"/>
-<link rel="stylesheet" href="css/summernote.css"/>
+<link rel="stylesheet" href="css/summernote.css"/> 
 <link rel="stylesheet" href="css/default.css"/>
-<link rel="stylesheet" href="css/layout.css"/>
-<link rel="stylesheet" href="css/form.css"/>
-<link rel="stylesheet" href="css/print.css" media="print">
+<link rel="stylesheet" href="css/egovframework/com/cmm/layout.css"/>
+<link rel="stylesheet" href="css/egovframework/com/cmm/form.css"/>
+<link rel="stylesheet" href="css/egovframework/com/cmm/print.css" media="print">
 
 
 </head>
 <body>
-<!-- <div id="header">
-  <p class="navbar-text navbar-right">
-    <a href="logout" class="navbar-link"><i class="fa fa-sign-out"></i> Log out</a>
-  </p>
-</div> -->
-<!-- Gnb -->
-<div class="Gnb"> 
-   <!-- 메뉴별 gnb 컬러 변경 / gnb_00 -->
-	<div class="gnb_em">
-		<div class="top_logo"><span class="tx_b">BridgeOffice</span></div>
-		<!-- 메뉴 시작 / 선택메뉴 활성화는 on 추가 -->
-		<div class="menu">
-			<ul>
-				<li class=""><a href="javascript:gotoApproval()" title="Home">Home</a></li>
-				<li class=""><a href="javascript:gotoApproval()" title="Approval">Approval</a></li>
-                   <li class="on"><a href="javascript:gotoApproval()" title="Email">Email</a></li>
-                   <li class=""><a href="javascript:gotoApproval()" title="BBS">BBS</a></li>
-                   <li class=""><a href="javascript:gotoApproval()" title="Schedule">Schedule</a></li>
-                   <li class=""><a href="javascript:gotoApproval()" title="Reservation">Reservation</a></li>
-				<li class=""><a href="javascript:gotoApproval()" title="Contact">Contact</a></li>
-				<li class=""><a href="javascript:gotoApproval()" title="SNS">SNS</a></li>
-			</ul>
-			<input type="hidden" id="selectedMenu" value="">
+<div class="wrap">
+	<!--  Top 메뉴영역 시작 --> 
+	<div class="Gnb"> 
+   		<!-- 메뉴별 gnb 컬러 변경 / gnb_00 -->
+		<div class="gnb_em">
+			<div class="top_logo"><span class="tx_b">BridgeOffice</span></div>
+			<!-- 메뉴 시작 / 선택메뉴 활성화는 on 추가 -->
+			<div class="menu">
+				<ul>
+					<li class=""><a href="javascript:gotoApproval()" title="Home">Home</a></li>
+					<li class=""><a href="javascript:gotoApproval()" title="Approval">Approval</a></li>
+	                   <li class="on"><a href="javascript:gotoApproval()" title="Email">Email</a></li>
+	                   <li class=""><a href="javascript:gotoApproval()" title="BBS">BBS</a></li>
+	                   <li class=""><a href="javascript:gotoApproval()" title="Schedule">Schedule</a></li>
+	                   <li class=""><a href="javascript:gotoApproval()" title="Reservation">Reservation</a></li>
+					<li class=""><a href="javascript:gotoApproval()" title="Contact">Contact</a></li>
+					<li class=""><a href="javascript:gotoApproval()" title="SNS">SNS</a></li>
+				</ul>
+				<input type="hidden" id="selectedMenu" value="">
+			</div>
+			<!-- 회원정보 시작 -->
+			<div class="user">
+				<ul style="cursor: pointer;" id="login_view">
+					<li><img src="images/egovframework/com/uss/cmm/man.png" alt="user"></li>
+					<li><div class="name profile">David.kim</div></li>
+					<li>
+						<div class="view">
+							<a href="#"  title="view"></a>
+						</div>
+					</li>
+				</ul>
+		 	</div>
+			<!-- 회원정보 끝 --> 
 		</div>
-		<!-- 회원정보 시작 -->
-		<div class="user">
-			<ul style="cursor: pointer;" id="login_view">
-				<li><img src="images/man.png" alt="user"></li>
-				<li><div class="name profile">jacob</div></li>
-				<li>
-					<div class="view">
-						<a href="#"  title="view"></a>
-					</div>
-				</li>
-			</ul>
-	  </div>
-		<!-- 회원정보 끝 --> 
 	</div>
-</div>
-<!-- Gnb 끝 -->
-<div class="clear"></div>
-<!--  Top 메뉴영역 끝 --> 
+	<!-- Gnb 끝 -->
+	<div class="clear"></div>
+	<!--  Top 메뉴영역 끝 --> 
 
-<div class="Container"> 
-	<div class="Side"> 
-	<!-- 메뉴별 lnb 타이틀 컬러 변경 / lnb_00 -->
-	<div class="lnb_em">Email</div>
-	<div class="h36"></div>
-	<!-- lnb별 공통 버튼 -->
-	<div class="lnb_butbox" id="lnb_butbox">
-		<input type="button" id="compose" value='<fmt:message key="menu.compose"/>' class="but_big"/>
-	</div>
 	
-	<!-- 트리 삽입 영역 -->
-	<div class="lnb_tree" style="background: #FFF;">
-	<div id="navigation">
-		<ul class="nav nav-stacked" id="side-menu">
-			<li role="presentation"><a
-				data-target="${store.inboxInfo.path}"> <i class="fa fa-inbox"></i>
-					<fmt:message key="prefs.inbox" /> <span id="inbox-unread"
-					class="label label-warning pull-right"></span>
-			</a></li>
-			<li role="presentation"><a
-				data-target="${store.sentMailArchive.path}"> <i
-					class="fa fa-paper-plane-o"></i> ${store.sentMailArchive.name}
-			</a></li>
-			<li role="presentation"><a
-				data-target="${store.toSendArchive.path}"> <i
-					class="fa fa-clock-o"></i> ${store.toSendArchive.name}
-			</a></li>
-			<li id="trashInfo" role="presentation"><a
-				data-target="${store.trashInfo.path}"> <i
-					class="fa fa-trash-o"></i> ${store.trashInfo.name}
-			</a></li>
-			<li role="presentation"><a
-				data-target="${store.draftInfo.path}"> <i
-					class="fa fa-pencil-square-o"></i> ${store.draftInfo.name}
-			</a></li>
-			<li id="personalArchive" role="presentation"><a
-				data-target="${store.personalArchive.path}"> <i
-					class="fa fa-archive"></i> ${store.personalArchive.name} <span
-					class="fa arrow collapsed" data-toggle="collapse"
-					data-target="#tree-container"></span>
-			</a>
-				<div class="sub-nav collapse" id="tree-container">
-					<div id="tree"></div>
-					<div class="folder-menu clearfix">
-						<span class="pull-right"> <a id="create-folder"
-							class="btn btn-default btn-xs"
-							title="<fmt:message key='menu.folder.create'/>"><i
-								class="fa fa-plus"></i></a> <a id="delete-folder"
-							class="btn btn-default btn-xs"
-							title="<fmt:message key='menu.folder.delete'/>"><i
-								class="fa fa-remove"></i></a> <a id="rename-folder"
-							class="btn btn-default btn-xs"
-							title="<fmt:message key='menu.folder.rename'/>"><i
-								class="fa fa-edit"></i></a> <a id="manage-folder"
-							class="btn btn-default btn-xs"
-							title="<fmt:message key='menu.folder.manage'/>"><i
-								class="fa fa-wrench"></i></a>
-						</span>
+	<div class="Container">
+	 
+		<!-- Left menu 시작 -->
+		<div class="Side"> 
+			<!-- 메뉴별 lnb 타이틀 컬러 변경 / lnb_00 -->
+			<div class="lnb_em">Email</div>
+			<div class="h36"></div>
+			<!-- lnb별 공통 버튼 -->
+			<div class="lnb_butbox" id="lnb_butbox">
+				<input type="button" id="compose" value='<fmt:message key="menu.compose"/>' class="but_big"/>
+			</div>
+			
+			<!-- 트리 삽입 영역 -->
+			<div class="lnb_tree" style="background: #FFF;">
+				<div id="navigation">
+					<ul class="nav nav-stacked" id="side-menu">
+						<li role="presentation"><a
+							data-target="${store.inboxInfo.path}"> <i class="fa fa-inbox"></i>
+								<fmt:message key="prefs.inbox" /> <span id="inbox-unread"
+								class="label label-warning pull-right"></span>
+						</a></li>
+						<li role="presentation"><a
+							data-target="${store.sentMailArchive.path}"> <i
+								class="fa fa-paper-plane-o"></i> ${store.sentMailArchive.name}
+						</a></li>
+						<li role="presentation"><a
+							data-target="${store.toSendArchive.path}"> <i
+								class="fa fa-clock-o"></i> ${store.toSendArchive.name}
+						</a></li>
+						<li id="trashInfo" role="presentation"><a
+							data-target="${store.trashInfo.path}"> <i
+								class="fa fa-trash-o"></i> ${store.trashInfo.name}
+						</a></li>
+						<li role="presentation"><a
+							data-target="${store.draftInfo.path}"> <i
+								class="fa fa-pencil-square-o"></i> ${store.draftInfo.name}
+						</a></li>
+						<li id="personalArchive" role="presentation"><a
+							data-target="${store.personalArchive.path}"> <i
+								class="fa fa-archive"></i> ${store.personalArchive.name} <span
+								class="fa arrow collapsed" data-toggle="collapse"
+								data-target="#tree-container"></span>
+						</a>
+							<div class="sub-nav collapse" id="tree-container">
+								<div id="tree"></div>
+								<div class="folder-menu clearfix">
+									<span class="pull-right"> <a id="create-folder"
+										class="btn btn-default btn-xs"
+										title="<fmt:message key='menu.folder.create'/>"><i
+											class="fa fa-plus"></i></a> <a id="delete-folder"
+										class="btn btn-default btn-xs"
+										title="<fmt:message key='menu.folder.delete'/>"><i
+											class="fa fa-remove"></i></a> <a id="rename-folder"
+										class="btn btn-default btn-xs"
+										title="<fmt:message key='menu.folder.rename'/>"><i
+											class="fa fa-edit"></i></a> <a id="manage-folder"
+										class="btn btn-default btn-xs"
+										title="<fmt:message key='menu.folder.manage'/>"><i
+											class="fa fa-wrench"></i></a>
+									</span>
+								</div>
+							</div></li>
+						<li role="presentation"><a> <i
+								class="fa fa-share-alt-square"></i> <fmt:message
+									key='prefs.publicfolder' /> <span class="fa arrow"
+								data-toggle="collapse" data-target="#namespace-container"></span>
+						</a>
+							<div class="sub-nav" id="namespace-container">
+								<div id="namespaces">
+									<ul id="namespaces-data">
+										<c:forEach var="ns" items="${namespaces}">
+											<li id="${ns.path}" class="folder lazy unselectable">${ns.name}</li>
+										</c:forEach>
+									</ul>
+								</div>
+							</div></li>
+					</ul>
+					<!-- /#side-menu.nav -->
+					<div class="sidebar-quota">
+						<div id="quota" class="text-right text-muted">{0} of {1}
+							used</div>
+						<div class="progress progress-bar-xs">
+							<div class="progress-bar progress-bar-primary" role="progressbar"
+								aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+								style="width: 0%;">
+								<span class="sr-only"></span>
+							</div>
+						</div>
 					</div>
-				</div></li>
-			<li role="presentation"><a> <i
-					class="fa fa-share-alt-square"></i> <fmt:message
-						key='prefs.publicfolder' /> <span class="fa arrow"
-					data-toggle="collapse" data-target="#namespace-container"></span>
-			</a>
-				<div class="sub-nav" id="namespace-container">
-					<div id="namespaces">
-						<ul id="namespaces-data">
-							<c:forEach var="ns" items="${namespaces}">
-								<li id="${ns.path}" class="folder lazy unselectable">${ns.name}</li>
-							</c:forEach>
-						</ul>
-					</div>
-				</div></li>
-		</ul>
-		<!-- /#side-menu.nav -->
-		<div class="sidebar-quota">
-			<div id="quota" class="text-right text-muted">{0} of {1}
-				used</div>
-			<div class="progress progress-bar-xs">
-				<div class="progress-bar progress-bar-primary" role="progressbar"
-					aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-					style="width: 0%;">
-					<span class="sr-only"></span>
+					<!-- /.sidebar-quota -->
+					<ul class="nav nav-stacked">
+						<li><a id="settings"><i class="fa fa-cogs"></i> <fmt:message key="menu.settings" /></a></li>
+					</ul>
 				</div>
 			</div>
+			<!-- 트리 삽입 영역 -->
 		</div>
-		<!-- /.sidebar-quota -->
-		<ul class="nav nav-stacked">
-			<li><a id="settings"><i class="fa fa-cogs"></i> <fmt:message
-						key="menu.settings" /></a></li>
-				</ul>
+		<!-- Left menu 끝 -->
+	
+
+		<!-- Content -->
+		<div class="Content"> 
+		<!-- Content box 시작 -->
+			<div class="content_box"> 
+				<div class="top_search"></div>
+				<div class="clear"></div>
+				<div class="title_box">
+					<div class="title_line"><h1><fmt:message key="prefs.inbox" /></h1></div>
+				</div>
+				
+				<div class="con">
+                <div class="rapper_table mb40">
+				    <div role="tabpanel" class="tab-pane active" id="main-tab">
+				    	<a href="<c:url value='folder/messages'>
+				  			<c:param name='path' value='INBOX'/>
+				  			<c:param name='criteria' value='${prefs.inboxType}'/>
+				  			<c:param name='pageSize' value='${prefs.pageSize}'/>
+						</c:url>"></a>
+					<!-- Simple splash message -->
+					<div class="splash">
+						<h1><i class="fa fa-spinner fa-spin fa-lg"></i></h1>
+					</div>
+				    </div><!-- /#main-tab.tab-pane -->
+				    <div role="tabpanel" class="tab-pane" id="sub-tab">
+				    </div><!-- /#sub-tab.tab-pane -->
+			    </div><!-- rapper_table mb40 끝 -->
+			    </div><!-- con 끝 -->
+
 			</div>
+			<!-- Content box 끝 -->
 		</div>
+	  	<!-- Content 끝 -->
 	</div>
-	
-	
-	<!-- 컨텐트영역 -->
-	<!-- <div id="wrapper"> -->
-	  <div class="content">
-	    <ul id="tablist" class="nav nav-tabs" role="tablist">
-	      <li role="presentation" class="hidden" id="tab">
-	        <a role="tab" data-toggle="tab">
-	        	<button class="close">x</button> Loading...
-	        </a>
-	      </li>
-	      <li role="presentation" class="active">
-	      	<a href="#main-tab" aria-controls="main-tab" role="tab" data-toggle="tab">
-	      		<fmt:message key="prefs.inbox" />
-	    	</a>
-	    </li>
-	    <li role="presentation" class="hidden">
-	    	<a href="#sub-tab" aria-controls="sub-tab" role="tab" data-toggle="tab">
-	    		<button class="close">x</button> {0}
-	    	</a>
-	    </li>
-	  </ul>
-	  <div id="tab-content" class="tab-content">
-	    <div role="tabpanel" class="tab-pane active" id="main-tab">
-	    	<a href="<c:url value='folder/messages'>
-	  			<c:param name='path' value='INBOX'/>
-	  			<c:param name='criteria' value='${prefs.inboxType}'/>
-	  			<c:param name='pageSize' value='${prefs.pageSize}'/>
-		</c:url>"></a>
-		<!-- Simple splash message -->
-		<div class="splash">
-			<h1><i class="fa fa-spinner fa-spin fa-lg"></i></h1>
-		</div>
-	    </div><!-- /#main-tab.tab-pane -->
-	    <div role="tabpanel" class="tab-pane" id="sub-tab">
-	    </div><!-- /#sub-tab.tab-pane -->
-	  </div><!-- /.tab-content -->
-	</div><!-- /.content -->
-	  <footer id="footer" class="footer">
-	    <span class="pull-right">HEDWIG WEBMAIL</span>
-	  </footer>
-	<!-- </div> --><!-- #wrapper -->
-	<!-- 컨텐트영역 끝  -->
+	<!-- Container 끝 -->
+	<div class="clear"></div>
 </div>
-<!-- 컨테이너영역 끝  -->
+<!-- wrap 끝  -->
 
-
-
-<!-- Modal dialog template -->
+<!-- Modal dialog template 시작 -->
 <div id="modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
     	<div class="modal-header">
-      	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      		<span aria-hidden="true">&times;</span>
-      	</button>
-      	<h4 class="modal-title">Modal title</h4>
+	      	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	      		<span aria-hidden="true">&times;</span>
+	      	</button>
+      		<h4 class="modal-title">Modal title</h4>
     	</div>
-      <div class="modal-body text-center">
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="menu.close"/></button>
-  	</div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-  
+      	<div class="modal-body text-center"></div>
+     	<div class="modal-footer">
+      		<button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="menu.close"/></button>
+  		</div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- Modal dialog template 끝 -->
+
+
+<!-- EgovCopyright 시작  -->
+<!-- <div class="layerPopup_rapper profilePop" style="display: none; position:absolute !important; right:20px; left:inherit !important; top:200px; margin:0 !important;">
+    <iframe name="iframePopup" id="iframePopup" src=""></iframe>
+</div>
+<div id="shadow_profile" class="shadow_profile" style="display: none;"></div> -->
+<!-- EgovCopyright 끝 -->
+
 <script src="js/jquery/jquery.js"></script>
 <script src="js/jquery/jquery-ui.js"></script>
 <script src="js/jquery/jquery.fancytree.js"></script>
@@ -256,8 +258,17 @@ function loadtab(tabid, tabname, url, data) {
 function showtab(tabid, tabname) {
 	if (!$('#' + tabid).length) return false;
 	var tab = $('#tablist a[href=#' + tabid + ']').tab('show').closest('li').removeClass('hidden').end();
-	if (tabname) tab.html(tab.has('button').length ? tab.html().replace(/.*(<[^\/].*\/.*>).*/, "$1" + tabname) : tabname);
-	return true;
+	console.log();
+	if (tabname) {
+		if(tab.has('button').length){
+			tab.html(tab.html().replace(/.*(<[^\/].*\/.*>).*/, "$1" + tabname));
+		}else{
+			tab.html(tabname);
+			$(".title_line h1").text($.trim(tabname));
+		}
+		return true;
+	}
+	
 }
 function removetab(tabid) {
 	$('#tablist a[href=#main-tab]').tab('show');
@@ -340,7 +351,7 @@ $(function() {
 		loadtab('main-tab', name, 'folder/messages', $.param({path:path}));
 	});
 	$('#compose').click(function() {
-		loadtab('sub-tab', $(this).text(), 'message/compose');
+		loadtab('main-tab', $(this).val(), 'message/compose');
 	});
 	$('#create-folder').click(function() {
 		eModal.prompt({title:'<fmt:message key="main.folder.promptname"/>'})

@@ -80,9 +80,10 @@ a {
   right: 0;
 }
 .splash {
-  text-align: center;
-  margin: 10% auto;
-  padding: 20px;
+  position: absolute;
+  left: 60%;
+  top: 50%;
+  transform: translate(-60%, -50%);
 }
 /* Menu */
 .media {
@@ -222,7 +223,7 @@ a {
   width: 25ex;
 }
 #main-tab table th.flag {
-  width: 10ex;
+  width: 0ex;
 }
 #main-tab table th.date {
   width: 18ex;
@@ -231,7 +232,6 @@ a {
   padding-bottom: 20px;
 }
 .mail-body {
-  border-top: 1px solid #e7eaec;
   padding: 20px;
 }
 .mail-body address.showcc > div {
@@ -242,9 +242,6 @@ a {
 }
 .mail-body address.showcc > div.cc {
   display: none;
-}
-.mail-body .form-group input[name=to] {
-  padding-right: 90px;
 }
 .mail-body .form-group .field-options {
   position: absolute;

@@ -35,7 +35,7 @@
 	</div>
 	<div class="mail-content">
 		<div class="mail-body">
-			<h4 class="mail-title"><c:out value="${message.subject}"/></h4>
+			<h3 class="mail-title"><c:out value="${message.subject}"/></h3>
 			<h5>
 				<span class="pull-right">
 					<i class="fa fa-clock-o"></i> <fmt:formatDate value="${message.receivedDate}" pattern="yyyy.MM.dd HH:mm"/>
