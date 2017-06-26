@@ -13,7 +13,7 @@
 	<input type="hidden" name="path" value="${actualmsg.folderFullName}"/>
 	<input type="hidden" name="uid" value="${actualmsg.UID}"/>
 </c:if>
-	<div class="mail-header">
+	<div class="mail-header" style="float: right;">
 		<a id="sendmail" class="btn btn-default btn-sm">
 			<i class="fa fa-reply"></i> <fmt:message key="menu.send"/>
 		</a>
@@ -60,72 +60,106 @@
 		</a>
 	</div>
 	<div class="mail-content">
-		<div class="mail-body">
-			<div class="form-group">
-				<label class="col-sm-2 control-label"><fmt:message key="label.subject"/>:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" name="subject" placeholder="Subject" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label"><fmt:message key="label.to"/>:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" name="to" placeholder="To" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label"><fmt:message key="label.cc"/>:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="cc" name="cc" placeholder="CC" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label"><fmt:message key="label.bcc"/>:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="bcc" name="bcc" placeholder="BCC" />
-				</div>
-			</div>
-			<div id="attachments" class="form-group hidden">
-				<label class="col-sm-2 control-label"><fmt:message key="label.attach"/>:</label>
-				<div class="attachments col-sm-10">
-					<input type="file" name="attachment[]" />
-				</div>
+		<table class="board_width_borderNone">
+			<caption class="blind"></caption>
+			<colgroup>							
+				<col width="100px"/>
+				<col width="70px"/>
+				<col width="*"/>
+				<col width="80px"/>
+				<col width="63px"/>
+			</colgroup>
+			<tbody>
+				<tr>
+					<th scope="row" ><label for="label_1"><fmt:message key="label.subject"/></label></th>
+					<td colspan="4">
+						<div class="ui_input_text">
+							<input type="text" name="subject" id="subject" size="60" maxlength="60"/>
+							<br/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" ><label for="label_1"><fmt:message key="label.to"/></label></th>
+					<td colspan="4">
+						<div class="ui_input_text">
+							<input type="text" name="to" id="to" size="60" maxlength="60"/>
+							<br/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" ><label for="label_1"><fmt:message key="label.cc"/></label></th>
+					<td colspan="4">
+						<div class="ui_input_text">
+							<input type="text" name="cc" id="cc" size="60" maxlength="60"/>
+							<br/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" ><label for="label_1"><fmt:message key="label.bcc"/></label></th>
+					<td colspan="4">
+						<div class="ui_input_text">
+							<input type="text" name="bcc" id="bcc" size="60" maxlength="60"/>
+							<br/>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<th scope="row" ><label for="label_1"><fmt:message key="label.content"/></label></th>
+					<td colspan="4">
+						<c:choose>
+						<c:when test="${not empty actualmsg}">
+							<textarea id="summernote" name="body">
+							<c:if test="${prefs.autoQuote}">
+								<c:out value="${message.body}" escapeXml="false"/>
+							</c:if>
+								<c:out value="${actualmsg.body}"/>
+							</textarea>
+							<c:if test="${not empty actualmsg.attachParts}">
+							<div id="org-attach" class="mail-attachment">
+								<c:forEach var="attach" items="${actualmsg.attachParts}" varStatus="status">
+								<label class="checkbox-inline">
+									<input type="checkbox" name="parts" value="${attach.partNumber}" 
+							<c:if test="${prefs.autoAttach}">checked</c:if>		
+									/>
+									<c:out value="${attach.name}"/> <span>(<wma:size value="${attach.size}"/>)</span>
+								</label>
+								</c:forEach>
+							</div><!-- /.mail-attachment -->
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<textarea id="summernote" name="body"></textarea>
+						</c:otherwise>
+						</c:choose>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" ><label for="label_1"><fmt:message key="compose.reserve.tosend"/></label></th>
+					<td colspan="4">
+						<div class="form-inline">
+							<input type="checkbox" name="reserve" value="true">
+							<input type="text" id="reserve-d" name="date" class="form-control input-sm"/>
+							<select id="reserve-h" name="hour" class="form-control input-sm"></select>
+							<strong>:</strong>
+							<select id="reserve-m" name="minute" class="form-control input-sm"></select>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		
+		
+		<div id="attachments" class="form-group hidden">
+			<label class="col-sm-2 control-label"><fmt:message key="label.attach"/>:</label>
+			<div class="attachments col-sm-10">
+				<input type="file" name="attachment[]" />
 			</div>
 		</div>
-	<c:choose>
-	<c:when test="${not empty actualmsg}">
-		<textarea id="summernote" name="body">
-		<c:if test="${prefs.autoQuote}">
-			<c:out value="${message.body}" escapeXml="false"/>
-		</c:if>
-			<c:out value="${actualmsg.body}"/>
-		</textarea>
-		<c:if test="${not empty actualmsg.attachParts}">
-		<div id="org-attach" class="mail-attachment">
-			<c:forEach var="attach" items="${actualmsg.attachParts}" varStatus="status">
-			<label class="checkbox-inline">
-				<input type="checkbox" name="parts" value="${attach.partNumber}" 
-		<c:if test="${prefs.autoAttach}">checked</c:if>		
-				/>
-				<c:out value="${attach.name}"/> <span>(<wma:size value="${attach.size}"/>)</span>
-			</label>
-			</c:forEach>
-		</div><!-- /.mail-attachment -->
-		</c:if>
-	</c:when>
-	<c:otherwise>
-		<textarea id="summernote" name="body"></textarea>
-	</c:otherwise>
-	</c:choose>
-	</div><!-- /.mail-content -->
-	<div class="form-inline from-group">
-		<label>
-			<input type="checkbox" name="reserve" value="true"> <fmt:message key="compose.reserve.tosend"/>
-		</label>
-		<input type="text" id="reserve-d" name="date" class="form-control input-sm"/>
-		<select id="reserve-h" name="hour" class="form-control input-sm"></select>
-		<strong>:</strong>
-		<select id="reserve-m" name="minute" class="form-control input-sm"></select>
+	
 	</div>
 </form>
 <div class="hidden">
