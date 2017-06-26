@@ -66,7 +66,7 @@
 				<tr>
 					<th><label for="label_1"><fmt:message key="label.content"/></label></th>
 					<td colspan="3" class="ui_textarea_rapper_04">
-						<textarea><c:out value="${message.body}" escapeXml="false"/></textarea>
+						<div><c:out value="${message.body}" escapeXml="false"/></div>
 					</td>  
 				</tr>
 			</tbody>
