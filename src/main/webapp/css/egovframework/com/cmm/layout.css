@@ -302,6 +302,7 @@ li.btn_delete {line-height: 18px; background-color: #b4b4b4; color: #fff; paddin
 .ui_textarea_rapper_01 textarea {width: 100%; height: 80px;  padding: 2%; margin-left:5px;}
 .ui_textarea_rapper_02 textarea {width: 100%; height: 80px;  padding: 2%; margin-left:5px;background-color: #ffffff;}
 .ui_textarea_rapper_03 textarea {width: 99.5%; height: 300px;  padding: 2%; margin-left:5px;background-color: #ffffff;}
+.ui_textarea_rapper_04 textarea {width: 95.5%; height: 300px;  padding: 2%; margin-left:5px;background-color: #ffffff;}
 
 a.icon_calendar {margin-left: 10px;}
 thead.align_center th {text-align: center;}

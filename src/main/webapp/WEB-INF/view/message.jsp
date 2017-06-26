@@ -11,12 +11,7 @@
 	<input type="hidden" name="number" value="${message.number}"/>
 	<input type="hidden" name="part"/>
 
-	<div class="mail-header">
-		<div class="btn-group pull-right">
-			<a id="prev" class="btn btn-sm"><i class="fa fa-arrow-left"></i></a>
-			<a id="next" class="btn btn-sm"><i class="fa fa-arrow-right"></i></a> 
-			<a id="print" class="btn btn-sm"><i class="fa fa-print"></i></a> 
-		</div>
+	<div class="mail-header" style="float:right;">
 		<a id="reply" class="btn btn-default btn-sm">
 			<i class="fa fa-reply"></i> <fmt:message key="menu.reply"/>
 		</a>
@@ -32,41 +27,65 @@
 		<a id="raw-msg" class="btn btn-default btn-sm">
 			<i class="fa fa-file-code-o"></i> <fmt:message key="menu.rawmsg"/>
 		</a>
+		<a id="prev" class="btn btn-sm"><i class="fa fa-arrow-left"></i></a>
+		<a id="next" class="btn btn-sm"><i class="fa fa-arrow-right"></i></a> 
+		<a id="print" class="btn btn-sm"><i class="fa fa-print"></i></a> 
 	</div>
 	<div class="mail-content">
-		<div class="mail-body">
-			<h3 class="mail-title"><c:out value="${message.subject}"/></h3>
-			<h5>
-				<span class="pull-right">
-					<i class="fa fa-clock-o"></i> <fmt:formatDate value="${message.receivedDate}" pattern="yyyy.MM.dd HH:mm"/>
-				</span>
-				<span><wma:address value="${message.from}"/></span>
-			</h5>
-			<address class="showcc">
-				<div><strong><fmt:message key="label.to"/>: </strong><wma:address value="${message.to}"/></div>
-<c:if test="${not empty message.CC}">
-				<div class="cc"><strong><fmt:message key="label.cc"/>: </strong><wma:address value="${message.CC}"/></div>
-</c:if>
-			</address>
-		</div>
-		<div class="mail-body">
-			<c:out value="${message.body}" escapeXml="false"/>
-			<div class="clearfix"></div>
-		</div>
-<c:if test="${not empty message.attachParts}">
-		<div class="mail-attachment">
+			<table class="board_width_borderNone">
+			<caption class="blind"></caption>
+			<colgroup>
+				<col width="100px"/>
+				<col width="*"/>
+				<col width="100px"/>
+				<col width="250px"/>
+			</colgroup>
+			<tbody>
+				<tr>
+					<th><label for="label_1"><fmt:message key="label.subject"/></label></th>
+					<td colspan="3"><div class="ui_input_text">
+						<input type="text" name="" value='<c:out value="${message.subject}"/>' readonly /></div>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="label_1"><fmt:message key="label.from"/></label></th>
+					<td><div class="ui_input_text"><input type="text" name="" value='<wma:address value="${message.from}"/>' readonly/></div></td>
+					<th><label for="label_1"><fmt:message key="label.receiveddate"/></label></th>
+					<td><div class="ui_input_text"><input type="text" name="" value='<fmt:formatDate value="${message.receivedDate}" pattern="yyyy.MM.dd HH:mm"/>' readonly/></div></td>
+				</tr>
+				<tr>
+					<th><label for="label_1"><fmt:message key="label.to"/></label></th>
+					<td colspan="3"><div class="ui_input_text"><input type="text" name="" value='<wma:address value="${message.to}"/>' readonly/></div></td>
+				</tr>
+				<c:if test="${not empty message.CC}">
+				<tr>
+					<th><label for="label_1"><fmt:message key="label.cc"/></label></th>
+					<td colspan="3"><div class="ui_input_text"><input type="text" name="" value='<wma:address value="${message.CC}"/>' readonly/></div></td>
+				</tr>
+				</c:if>
+				<tr>
+					<th><label for="label_1"><fmt:message key="label.content"/></label></th>
+					<td colspan="3" class="ui_textarea_rapper_04">
+						<textarea><c:out value="${message.body}" escapeXml="false"/></textarea>
+					</td>  
+				</tr>
+			</tbody>
+			
+			<c:if test="${not empty message.attachParts}">
+			<div class="mail-attachment">
 			<p>
 				<span><i class="fa fa-paperclip"></i> <fmt:message key="label.attach"/> (${fn:length(message.attachParts)})</span>
 			</p>
 			<ul class="attachment list-inline">
-	<c:forEach var="attach" items="${message.attachParts}" varStatus="status">
+			<c:forEach var="attach" items="${message.attachParts}" varStatus="status">
 				<li>
 					<a id="att-${attach.partNumber}"><c:out value="${attach.name}"/></a>
 					<span>(<wma:size value="${attach.size}"/>)</span>
 				</li>
-	</c:forEach>
+			</c:forEach>
 			</ul>
-		</div>
-</c:if>
+			</div>
+			</c:if>
+	</table>
 	</div>
 </form>
