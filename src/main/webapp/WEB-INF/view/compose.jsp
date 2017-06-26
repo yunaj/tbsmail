@@ -238,7 +238,8 @@ $(function() {
         			.find('.modal-body').html('<span class="fa fa-circle-o-notch fa-spin fa-3x text-primary"></span><h4>' + (savedraft ? 'Saving' : 'Sending') + '</h4>').end().modal('show');
 			},
 			success: function() {
-				$('#modal').modal('hide'), removetab('sub-tab');
+				$('#modal').modal('hide')/* , removetab('sub-tab') */;
+				loadtab('main-tab', 'inbox', 'folder/messages', $.param({path:'INBOX'}));
 				if (savedraft && $('#main-tab').find('#draft').length != 0) refresh();
 				else if (reply) {
 					var tr = $('#main-tab').find('input[name=uids][value=' + uid + ']').closest('tr');
