@@ -39,19 +39,19 @@
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" name="archivesent" value="true"
-<c:if test="${prefs.autoArchiveSent}">checked</c:if>
+							<c:if test="${prefs.autoArchiveSent}">checked</c:if>
 							/> <fmt:message key="prefs.autoarchive"/>
 						</label>          
 					</div>
-<c:if test="${not empty actualmsg && not empty actualmsg.attachParts}">
+					<c:if test="${not empty actualmsg && not empty actualmsg.attachParts}">
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" id="autoattach"
-<c:if test="${prefs.autoAttach}">checked</c:if>
+					<c:if test="${prefs.autoAttach}">checked</c:if>
 							/> <fmt:message key="prefs.autoattach"/>
 						</label>          
 					</div>
-</c:if>
+					</c:if>
 				</li>
 			</ul>
 		</div>
@@ -71,18 +71,15 @@
 				<label class="col-sm-2 control-label"><fmt:message key="label.to"/>:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="to" placeholder="To" />
-					<div class="field-options">
-						<a href="#cc" class="btn btn-default btn-xs">CC</a><a href="#bcc" class="btn btn-default btn-xs">BCC</a>
-					</div>
 				</div>
 			</div>
-			<div class="form-group hidden">
+			<div class="form-group">
 				<label class="col-sm-2 control-label"><fmt:message key="label.cc"/>:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="cc" name="cc" placeholder="CC" />
 				</div>
 			</div>
-			<div class="form-group hidden">
+			<div class="form-group">
 				<label class="col-sm-2 control-label"><fmt:message key="label.bcc"/>:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="bcc" name="bcc" placeholder="BCC" />
@@ -95,7 +92,7 @@
 				</div>
 			</div>
 		</div>
-<c:choose>
+	<c:choose>
 	<c:when test="${not empty actualmsg}">
 		<textarea id="summernote" name="body">
 		<c:if test="${prefs.autoQuote}">
@@ -119,7 +116,7 @@
 	<c:otherwise>
 		<textarea id="summernote" name="body"></textarea>
 	</c:otherwise>
-</c:choose>
+	</c:choose>
 	</div><!-- /.mail-content -->
 	<div class="form-inline from-group">
 		<label>
