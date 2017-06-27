@@ -123,7 +123,7 @@ h4 {color: #323a45;}
 								</div>
 							</div>
 						</li>
-						<li><a id="settings"> <fmt:message key="menu.settings" /></a></li>
+						<%-- <li><a id="settings"> <fmt:message key="menu.settings" /></a></li> --%>
 					</ul>
 					<!-- /.sidebar-quota -->
 					<ul class="nav nav-stacked">
