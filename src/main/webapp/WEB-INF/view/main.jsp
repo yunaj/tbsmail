@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="css/egovframework/com/cmm/form.css"/>
 <link rel="stylesheet" href="css/egovframework/com/cmm/print.css" media="print">
 
+<style type="text/css">
+h4 {color: #323a45;}
+</style>
 
 </head>
 <body>
@@ -79,29 +82,24 @@
 				<div id="navigation">
 					<ul class="nav nav-stacked" id="side-menu">
 						<li role="presentation"><a
-							data-target="${store.inboxInfo.path}"> <i class="fa fa-inbox"></i>
+							data-target="${store.inboxInfo.path}">
 								<fmt:message key="prefs.inbox" /> <span id="inbox-unread"
-								class="label label-warning pull-right"></span>
+								class="label label-unreadmail pull-right"></span>
 						</a></li>
 						<li role="presentation"><a
-							data-target="${store.sentMailArchive.path}"> <i
-								class="fa fa-paper-plane-o"></i> ${store.sentMailArchive.name}
+							data-target="${store.sentMailArchive.path}"> ${store.sentMailArchive.name}
 						</a></li>
 						<li role="presentation"><a
-							data-target="${store.toSendArchive.path}"> <i
-								class="fa fa-clock-o"></i> ${store.toSendArchive.name}
+							data-target="${store.toSendArchive.path}"> ${store.toSendArchive.name}
 						</a></li>
 						<li id="trashInfo" role="presentation"><a
-							data-target="${store.trashInfo.path}"> <i
-								class="fa fa-trash-o"></i> ${store.trashInfo.name}
+							data-target="${store.trashInfo.path}"> ${store.trashInfo.name}
 						</a></li>
 						<li role="presentation"><a
-							data-target="${store.draftInfo.path}"> <i
-								class="fa fa-pencil-square-o"></i> ${store.draftInfo.name}
+							data-target="${store.draftInfo.path}"> ${store.draftInfo.name}
 						</a></li>
 						<li id="personalArchive" role="presentation"><a
-							data-target="${store.personalArchive.path}"> <i
-								class="fa fa-archive"></i> ${store.personalArchive.name} <span
+							data-target="${store.personalArchive.path}"> ${store.personalArchive.name} <span
 								class="fa arrow collapsed" data-toggle="collapse"
 								data-target="#tree-container"></span>
 						</a>
@@ -123,12 +121,14 @@
 											class="fa fa-wrench"></i></a>
 									</span>
 								</div>
-							</div></li>
-						<li role="presentation"><a> <i
-								class="fa fa-share-alt-square"></i> <fmt:message
-									key='prefs.publicfolder' /> <span class="fa arrow"
-								data-toggle="collapse" data-target="#namespace-container"></span>
-						</a>
+							</div>
+						</li>
+						<li><a id="settings"> <fmt:message key="menu.settings" /></a></li>
+					</ul>
+					<!-- /.sidebar-quota -->
+					<ul class="nav nav-stacked">
+						<%-- <li role="presentation"><a> <fmt:message
+									key='prefs.publicfolder' /></a>
 							<div class="sub-nav" id="namespace-container">
 								<div id="namespaces">
 									<ul id="namespaces-data">
@@ -137,7 +137,8 @@
 										</c:forEach>
 									</ul>
 								</div>
-							</div></li>
+							</div>
+						</li> --%>
 					</ul>
 					<!-- /#side-menu.nav -->
 					<div class="sidebar-quota">
@@ -151,10 +152,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- /.sidebar-quota -->
-					<ul class="nav nav-stacked">
-						<li><a id="settings"><i class="fa fa-cogs"></i> <fmt:message key="menu.settings" /></a></li>
-					</ul>
 				</div>
 			</div>
 			<!-- 트리 삽입 영역 -->
