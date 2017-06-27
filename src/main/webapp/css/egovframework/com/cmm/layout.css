@@ -8,33 +8,43 @@
 .Container {width:100%; height:auto;position:relative;background:url(../../../../images/egovframework/com/uss/cmm/bg_content.png) repeat-y;}
 .Container:after{display:block;clear:both;content:'';}
 /* 20160530 min-width:1044->1000으로 수정 */
-.Container .Content {width:100%; min-width:1000px; height:auto; margin:0 16px 0 0;float:left;} 
-.Container .Side {width:205px;height:404px;margin:0 14px 0 0;background:#ffffff;float:left;position:absolute;z-index:9;top: -1px;}
+.Container .Content {width:100%; min-width:1000px; height:auto; margin:0 16px 0 0;float:left;}
+/* 20170622 z-index 9999 -> 999로 수정 */
+.Container .Side {width:205px;height:404px;margin:0 14px 0 0;background:#ffffff;float:left;position:absolute;z-index:999;top: -1px;}
 
 
 /* Gnb */
-.gnb_in {width:100%; height:48px; background:#2d5d83; margin-right:16px;} /* Home */
-.gnb_ap {width:100%; height:48px; background:#9575cd; margin-right:16px;} /* Approval */
-.gnb_bd {width:100%; height:48px; background:#1fbba6; margin-right:16px;} /* BBS */
-.gnb_am {width:100%; height:48px; background:#8696a2; margin-right:16px;} /* Admin */
+.gnb_in {position: relative; width:100%; height:48px; background:#2d5d83; margin-right:16px;} /* Home */
+.gnb_ap {position: relative; width:100%; height:48px; background:#9575cd; margin-right:16px;} /* Approval */
+.gnb_bd {position: relative; width:100%; height:48px; background:#1fbba6; margin-right:16px;} /* BBS */
+.gnb_am {position: relative; width:100%; height:48px; background:#8696a2; margin-right:16px;} /* Admin */
 /* 20160530 gnb menu add */
-.gnb_em {width:100%; height:48px; background:#6c93d6; margin-right:16px;} /* Email */
-.gnb_sc {width:100%; height:48px; background:#6cb9d6; margin-right:16px;} /* Schedule */
-.gnb_re {width:100%; height:48px; background:#61a7e1; margin-right:16px;} /* Reservation */
-.gnb_ct {width:100%; height:48px; background:#dc49d6; margin-right:16px;} /* Contact */
+.gnb_em {position: relative; width:100%; height:48px; background:#6c93d6; margin-right:16px;} /* Email */
+.gnb_sc {position: relative; width:100%; height:48px; background:#6cb9d6; margin-right:16px;} /* Schedule */
+.gnb_re {position: relative; width:100%; height:48px; background:#61a7e1; margin-right:16px;} /* Reservation */
 /* 20170614 gnb menu add */
-.gnb_sn {width:100%; height:48px; background:#8a6732; margin-right:16px;} /* SNS */
+.gnb_sn {position: relative; width:100%; height:48px; background:#8a6732; margin-right:16px;} /* SNS */
+.gnb_ct {position: relative; width:100%; height:48px; background:#0e842c; margin-right:16px;} /* Contact */
+
 
 .top_logo {width:206px; height:44px; padding-top:4px;float:left; color:#ffffff; font-size:26px; text-align:center;}
 /* 20160530 gnb 메뉴추가 및 최소 화면 사이즈 문제로 .menu 수정  */
 .menu {width:700px; height:32px;padding-left:0px; margin-top:16px; float:left; }
-.menu li a {width:auto; height:28px; padding:0 8px 4px 8px; margin:0 9px; float:left; color:#ffffff; font-size:16px;opacity: 0.4; filter: alpha(opacity=4);position:relative; display:block;}
-.menu li.on > a {width:auto; height:28px; padding:0 8px 4px 8px; margin:0 9px; float:left;opacity: 1; filter: alpha(opacity=10);background:url(../../../../images/egovframework/com/uss/cmm/menu_line.png) repeat-x; background-position:bottom; position:relative; display:block;}
+.menu li a {width:auto; height:28px; padding:0 4px 4px 4px; margin:0 5px; float:left; color:#ffffff; font-size:16px;opacity: 0.4; filter: alpha(opacity=4);position:relative; display:block;}
+.menu li.on > a {width:auto; height:28px; padding:0 4px 4px 4px; margin:0 5px; float:left;opacity: 1; filter: alpha(opacity=10);background:url(../../../../images/egovframework/com/uss/cmm/menu_line.png) repeat-x; background-position:bottom; position:relative; display:block;}
 .menu li > a:hover,
 .menu li > a:focus,
-.menu li > a:active {width:auto; height:28px;padding:0 8px 4px 8px; margin:0 9px; float:left;opacity: 1; filter: alpha(opacity=10);background:url(../../../../images/egovframework/com/uss/cmm/menu_line.png) repeat-x; background-position:bottom; position:relative; display:block;}
+.menu li > a:active {width:auto; height:28px;padding:0 4px 4px 4px; margin:0 5px; float:left;opacity: 1; filter: alpha(opacity=10);background:url(../../../../images/egovframework/com/uss/cmm/menu_line.png) repeat-x; background-position:bottom; position:relative; display:block;}
+/* To-Do 메뉴 추가 */
+.todo_menu { position: relative; display: inline-block; float: left; width: auto; height: auto;}
+.todo_menu a { float:left; width:auto; height:34px; line-height: 35px; top: 8px; font-size: 14px; color: #fff; padding: 0 8px; background-color: rgba(0,0,0,0.3); border-radius: 10px; }
+.todo_menu a:hover { background-color: rgba(0,0,0,0.2); }
+.todo_menu a:active { background-color: rgba(0,0,0,0.4); }
+
 /* 20160530 min-width  수정  */
-.user {width:auto; max-width:174px; height:32px; padding:8px 0; margin-right:16px; float:right;}
+/* 20170622 float:right 주석처리, position: absolute, right: 0; 추가  */
+.user {position: absolute; right: 0; width:auto; max-width:215px; height:32px; padding:8px 0; margin-right:10px; /*float:right;*/}
+.user ul { display: inline-block; float: left; }
 .user li {width:auto; height:32px; margin-right:10px;float:left;}
 .user li img {width:32px; height:32px;border-radius:16px;}
 .user .name { width:auto; max-width:76px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis; height:21px; padding:8px 0 0 0; color:#ffffff; font-size:14px}
@@ -59,9 +69,9 @@ h4 { color:#ffffff; font-size:16px;line-height:1.6;}
 .lnb_em { width:205px; height:30px; padding-top:6px; background:#446bae; color:#ffffff; font-size:16px;line-height:1.6; text-align:center;} /* email */
 .lnb_sc { width:205px; height:30px; padding-top:6px; background:#317892; color:#ffffff; font-size:16px;line-height:1.6; text-align:center;} /* Schedule */
 .lnb_re { width:205px; height:30px; padding-top:6px; background:#256ca6; color:#ffffff; font-size:16px;line-height:1.6; text-align:center;} /* Reservation */
-.lnb_ct { width:205px; height:30px; padding-top:6px; background:#be4eb2; color:#ffffff; font-size:16px;line-height:1.6; text-align:center;} /* Contact */
 /* 20170614 lnb menu add */
-.lnb_sn { width:205px; height:30px; padding-top:6px; background:#d8a14e; color:#ffffff; font-size:16px;line-height:1.6; text-align:center;} /* SNS */
+.lnb_sn { width:205px; height:30px; padding-top:6px; background:#d8a14e; color:#ffffff; font-size:16px;line-height:1.6; text-align:center;} /* Reservation */
+.lnb_ct { width:205px; height:30px; padding-top:6px; background:#00b94a; color:#ffffff; font-size:16px;line-height:1.6; text-align:center;} /* Contact */
 
 .lnb_butbox {width:181px; height:36px; padding:0 12px 12px 12px; text-align:center; font-weight:normal;}
 .lnb_butbox input.but_big {width:181px; height:36px;color:#ffffff; font-size:16px;line-height:1.4; cursor:pointer;background-color:#323a45;border:#323a45 1px solid;padding:5px 0;vertical-align:middle;
@@ -236,7 +246,7 @@ overflow:visible;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:
 .top_logo {width:206px; height:44px; padding-top:4px;float:left; color:#ffffff; font-size:26px; text-align:center;}
 
 .menu { width:auto; min-width:326px; height:32px;padding-left:20px; margin-top:16px; float:left; }
-.menu li a {width:auto; height:28px; padding:0 4px 4px 4px; margin:0 8px; float:left; color:#ffffff; font-size:13px;opacity: 0.4; filter: alpha(opacity=4);position:relative; display:block;}
+.menu li a {width:auto; height:28px; padding:0 4px 4px 4px; margin:0 6px; float:left; color:#ffffff; font-size:13px;opacity: 0.4; filter: alpha(opacity=4);position:relative; display:block;}
 .menu li.on > a {width:auto; height:28px; padding:0 4px 4px 4px; margin:0 8px; float:left;opacity: 1; filter: alpha(opacity=10);background:url(../../../../images/egovframework/com/uss/cmm/menu_line.png) repeat-x; background-position:bottom; position:relative; display:block;}
 .menu li > a:hover,
 .menu li > a:focus,
@@ -302,7 +312,7 @@ li.btn_delete {line-height: 18px; background-color: #b4b4b4; color: #fff; paddin
 .ui_textarea_rapper_01 textarea {width: 100%; height: 80px;  padding: 2%; margin-left:5px;}
 .ui_textarea_rapper_02 textarea {width: 100%; height: 80px;  padding: 2%; margin-left:5px;background-color: #ffffff;}
 .ui_textarea_rapper_03 textarea {width: 99.5%; height: 300px;  padding: 2%; margin-left:5px;background-color: #ffffff;}
-.ui_textarea_rapper_04 div {width: 95.5%; height: 300px;  padding: 2%; margin-left:5px;background-color: #ffffff; border: 1px solid #cdcdcd;}
+.ui_textarea_rapper_04 div {width: 99%; height: 300px;  padding: 5px; margin-left:5px;background-color: #ffffff; border: 1px solid #cdcdcd;}
 
 a.icon_calendar {margin-left: 10px;}
 thead.align_center th {text-align: center;}
@@ -451,6 +461,9 @@ div.tree_width200 {width: 200px;}
 .layerPopup_rapper p.popup_title.type_reservation {background-color: #61a7e1;}
 .layerPopup_rapper p.popup_title.type_BBS {background-color: #1fbba6;}
 .layerPopup_rapper p.popup_title.type_admin {background-color: #8696a2;}
+.layerPopup_rapper p.popup_title.type_contact {background-color: #00b94a;}
+.layerPopup_rapper p.popup_title.type_sns {background-color: #8a6732;}
+.layerPopup_rapper p.popup_title.type_todo {background-color: #a4aa11;}
 .layerPopup_rapper p.popup_title.opiniontitle {font-size: 20px;}
 .scroll_height300 {height: 300px; overflow: auto;}
 /* 20160530 추가   */

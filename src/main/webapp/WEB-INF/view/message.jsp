@@ -38,7 +38,7 @@
 				<col width="100px"/>
 				<col width="*"/>
 				<col width="100px"/>
-				<col width="250px"/>
+				<col width="200px"/>
 			</colgroup>
 			<tbody>
 				<tr>
