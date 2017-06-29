@@ -63,6 +63,37 @@
 					<td colspan="3"><div class="ui_input_text"><input type="text" name="" value='<wma:address value="${message.CC}"/>' readonly/></div></td>
 				</tr>
 				</c:if>
+				<c:if test="${not empty message.attachParts}">
+				<tr>
+					<th><label for="label_1"><fmt:message key="label.attach"/></label></th>
+					<td colspan="3" style="padding-left:10px;">
+						<table summary="" class="board_type_height" id="fileTable">
+	                        <caption class="blind"></caption>
+	                        <colgroup>
+	                            <col width="10%"/>
+	                            <col width="*"/>
+	                            <col width="30%"/>
+	                        </colgroup>
+	                        <thead>
+	                            <tr>
+	                                <th scope="col"><span>No</span></th>
+	                                <th scope="col"><span>File Name</span></th>
+	                                <th scope="col"><span>Size</span></th>	
+	                            </tr>
+	                        </thead>					
+	                        <tbody>
+	                        	<c:forEach var="attach" items="${message.attachParts}" varStatus="status">
+	                            <tr>
+	                                <td>${attach.partNumber}</td>
+	                                <td><a id="att-${attach.partNumber}"><c:out value="${attach.name}"/></a></td>
+	                                <td><wma:size value="${attach.size}"/></td>
+	                            </tr>
+	                            </c:forEach>
+	                        </tbody>
+	                    </table>
+					</td>  
+				</tr>
+				</c:if>
 				<tr>
 					<th><label for="label_1"><fmt:message key="label.content"/></label></th>
 					<td colspan="3" class="ui_textarea_rapper_04">
@@ -70,22 +101,6 @@
 					</td>  
 				</tr>
 			</tbody>
-			
-			<c:if test="${not empty message.attachParts}">
-			<div class="mail-attachment">
-			<p>
-				<span><i class="fa fa-paperclip"></i> <fmt:message key="label.attach"/> (${fn:length(message.attachParts)})</span>
-			</p>
-			<ul class="attachment list-inline">
-			<c:forEach var="attach" items="${message.attachParts}" varStatus="status">
-				<li>
-					<a id="att-${attach.partNumber}"><c:out value="${attach.name}"/></a>
-					<span>(<wma:size value="${attach.size}"/>)</span>
-				</li>
-			</c:forEach>
-			</ul>
-			</div>
-			</c:if>
-	</table>
+		</table>
 	</div>
 </form>
