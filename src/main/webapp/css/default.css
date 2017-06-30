@@ -339,5 +339,12 @@ a {
 #pagination li{
   display: inline-block;
   margin-right: 5px;
+}
+#pagination li a{
+  color: #676a6c;
+}
+#pagination li.active a {
   font-weight: bold;
+  color: #446bae;
+  text-decoration: underline;
 }
