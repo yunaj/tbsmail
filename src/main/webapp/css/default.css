@@ -332,3 +332,12 @@ a {
   display: inline-block;
   width: 66%;
 }
+
+#pagination{
+  margin-top: 10px;
+}
+#pagination li{
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: bold;
+}

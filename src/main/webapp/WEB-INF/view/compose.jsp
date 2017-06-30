@@ -168,10 +168,10 @@
 					<td colspan="4">
 						<div class="form-inline">
 							<input type="checkbox" name="reserve" value="true">
-							<input type="text" id="reserve-d" name="date" class="form-control input-sm"/>
-							<select id="reserve-h" name="hour" class="form-control input-sm"></select>
+							<input type="text" id="reserve-d" name="date" />
+							<select id="reserve-h" name="hour"></select>
 							<strong>:</strong>
-							<select id="reserve-m" name="minute" class="form-control input-sm"></select>
+							<select id="reserve-m" name="minute"></select>
 						</div>
 					</td>
 				</tr>

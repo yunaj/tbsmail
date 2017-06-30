@@ -157,7 +157,7 @@
 	</table>
 </form>
 <div class="text-center">
-	<ul class="pagination" id="pagination"></ul>
+	<ul id="pagination"></ul>
 </div>
 <form id="upload-form" action="message/upload" method="post" enctype="multipart/form-data" class="hidden">
 	<input type="hidden" name="path" value="<c:out value='${path}'/>" />
