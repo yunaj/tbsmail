@@ -1,11 +1,11 @@
+var fileIndexNum = 0;
 (function($) {
 $.fn.bootstrapFileInput = function( title ) {
-
 	var $this = this.addClass('btn-file-wrapper');
 
 	this.each(function(i, elem) {
-	  var input = $(elem).find(':file'),
-	      buttonWord = title || 'Add...';
+	  var input = $(elem).find(':file');
+	  var buttonWord = title || 'add';
 	  input.wrap('<span class="btn btn-xs btn-file"></span>');
 	  $('<span>' + buttonWord + '</span>').insertBefore(input);
 	  $('<span class="close">&times;</span>').insertAfter(input);
@@ -26,6 +26,16 @@ $.fn.bootstrapFileInput = function( title ) {
 	      file.remove();
 	      input.parent().parent().append(clone);
 	    }
+	    if ($('#uploadFileTable').is(':hidden')) {$("#uploadFileTable").removeClass('hidden')};
+	    fileIndexNum++;
+	    var str = ""; 
+	    	str += "<tr>";
+	    	str += "<td><input type='checkbox' id='"+ fileIndexNum + "'></td>";
+	    	str += "<td>" + input[0].files[0].name + "</td>";
+	    	str += "<td>" + formatBytes(input[0].files[0].size) + "</td>";
+	    	str += "</tr>";
+	   
+	    $("#uploadFileTable > tbody").prepend(str);
 	  }).on('click', '.btn-file > .close', function() {
 	    $(this).parent().remove();
 	  });
@@ -117,9 +127,9 @@ function isValidMboxName(name) {
 
 function formatBytes(bytes) {
     if (bytes < 1024) return bytes + " Bytes";
-    else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
-    else if (bytes < 1073741824) return (bytes / 1048576).toFixed(1) + " MB";
-    else return (bytes / 1073741824).toFixed(1) + " GB";
+    else if (bytes < 1048576) return (bytes / 1024).toFixed(0) + " KB";
+    else if (bytes < 1073741824) return (bytes / 1048576).toFixed(0) + " MB";
+    else return (bytes / 1073741824).toFixed(0) + " GB";
 }
 
 function serializeObject(elem) {

@@ -108,59 +108,29 @@
 				</tr>
 				<tr>
 					<th scope="row" ></th>
-					<td colspan="4">
-						<div id="attachments" class="form-group hidden">
+					<td colspan="4" style="padding-left:10px;">
+						<div id="attachments" class="form-group" style="display: none">
 							<div class="attachments col-sm-10">
 								<input type="file" name="attachment[]" />
 							</div>
-							
-							<table class="board_type_height" id="fileTable">
-		                        <caption class="blind"></caption>
-		                        <colgroup>
-		                            <col width="40px"/>
-		                            <col width="*"/>
-		                            <col width="30%"/>
-		                        </colgroup>
-		                        <thead>
-		                            <tr>
-		                                <th scope="col" class="align_center" style="vertical-align: middle;"><img src="<c:url value='images/egovframework/com/cmm/icon/icon_check.png'/>" alt="icon_check"></th>
-		                                <th scope="col"><span>File Name</span></th>
-		                                <th scope="col"><span>File Size</span></th>	
-		                            </tr>
-		                        </thead>					
-		                        <tbody>
-		                            <tr>
-		                                <td></td>
-		                                <td></td>
-		                                <td></td>
-		                            </tr>
-		                        </tbody>
-		                    </table>
 						</div>
-						<%-- <table class="board_type_height" id="fileTable">
-		                        <caption class="blind"></caption>
-		                        <colgroup>
-		                            <col width="40px"/>
-		                            <col width="*"/>
-		                            <col width="30%"/>
-		                        </colgroup>
-		                        <thead>
-		                            <tr>
-		                                <th scope="col" class="align_center" style="vertical-align: middle;"><img src="<c:url value='images/egovframework/com/cmm/icon/icon_check.png'/>" alt="icon_check"></th>
-		                                <th scope="col"><span>File Name</span></th>
-		                                <th scope="col"><span>File Size</span></th>	
-		                            </tr>
-		                        </thead>					
-		                        <tbody>
-		                        	<c:forEach var="attach" items="${message.attachParts}" varStatus="status">
-		                            <tr>
-		                                <td>${attach.partNumber}</td>
-		                                <td><a id="att-${attach.partNumber}"><c:out value="${attach.name}"/></a></td>
-		                                <td><wma:size value="${attach.size}"/></td>
-		                            </tr>
-		                            </c:forEach>
-		                        </tbody>
-		                    </table> --%>
+						<table class="board_type_height hidden" id="uploadFileTable">
+	                        <caption class="blind"></caption>
+	                        <colgroup>
+	                            <col width="40px"/>
+	                            <col width="*"/>
+	                            <col width="30%"/>
+	                        </colgroup>
+	                        <thead>
+	                            <tr>
+	                                <th scope="col" class="align_center" style="vertical-align: middle;"><img src="<c:url value='images/egovframework/com/cmm/icon/icon_check.png'/>" alt="icon_check"></th>
+	                                <th scope="col"><span>File Name</span></th>
+	                                <th scope="col"><span>File Size</span></th>	
+	                            </tr>
+	                        </thead>					
+	                        <tbody>
+	                        </tbody>
+	                    </table>
 					</td>
 				</tr>
 				<tr>
@@ -258,6 +228,7 @@ $(function() {
 		$(what).closest('.form-group').removeClass('hidden');
 		$(what).focus();
 	}).on('click', '#attach', function() {
+		//$("#fileInBtn input").trigger('click');
 		$('#attachments :file:last').trigger('click');
 	}).on('change', ':file', function() {
 		if ($('#attachments').is(':hidden')) $('#attachments').removeClass('hidden');
