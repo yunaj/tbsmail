@@ -12,24 +12,16 @@
 	<input type="hidden" name="part"/>
 
 	<div class="mail-header" style="float:right;">
-		<a id="reply" class="btn btn-default btn-sm">
-			<i class="fa fa-reply"></i> <fmt:message key="menu.reply"/>
-		</a>
-		<a id="replyall" class="btn btn-default btn-sm">
-			<i class="fa fa-reply-all"></i> <fmt:message key="menu.replyall"/>
-		</a>
-		<a id="forward" class="btn btn-default btn-sm">
-			<i class="fa fa-share"></i> <fmt:message key="menu.forward"/>
-		</a>
-		<a id="delete-msg" class="btn btn-default btn-sm">
-			<i class="fa fa-trash-o"></i> <fmt:message key="menu.delete"/>
-		</a>
-		<a id="raw-msg" class="btn btn-default btn-sm">
-			<i class="fa fa-file-code-o"></i> <fmt:message key="menu.rawmsg"/>
-		</a>
-		<a id="prev" class="btn btn-sm"><i class="fa fa-arrow-left"></i></a>
-		<a id="next" class="btn btn-sm"><i class="fa fa-arrow-right"></i></a> 
-		<a id="print" class="btn btn-sm"><i class="fa fa-print"></i></a> 
+		<input type="button" id="reply" value='<fmt:message key="menu.reply"/>' class="but_gray"/>
+		<input type="button" id="replyall" value='<fmt:message key="menu.replyall"/>' class="but_gray"/>
+		<input type="button" id="forward" value='<fmt:message key="menu.forward"/>' class="but_gray"/>
+		<input type="button" id="delete-msg" value='<fmt:message key="menu.delete"/>' class="but_gray"/>
+		<input type="button" id="raw-msg" value='<fmt:message key="menu.rawmsg"/>' class="but_gray"/>
+		<span class="btn_pn_rapper">
+	        <a id="prev" class="move_page_button"><img src="images/egovframework/com/uss/cmm/but_prev.png" alt="prev"></a>
+	        <a id="next" class="move_page_button"><img src="images/egovframework/com/uss/cmm/but_next.png" alt="next"></a>
+	        <!-- <a id="print" class="btn btn-sm"><i class="fa fa-print"></i></a> --> 
+        </span>
 	</div>
 	<div class="mail-content">
 			<table class="board_width_borderNone">
@@ -70,7 +62,7 @@
 						<table summary="" class="board_type_height" id="fileTable">
 	                        <caption class="blind"></caption>
 	                        <colgroup>
-	                            <col width="10%"/>
+	                            <col width="40px"/>
 	                            <col width="*"/>
 	                            <col width="30%"/>
 	                        </colgroup>
@@ -78,7 +70,7 @@
 	                            <tr>
 	                                <th scope="col"><span>No</span></th>
 	                                <th scope="col"><span>File Name</span></th>
-	                                <th scope="col"><span>Size</span></th>	
+	                                <th scope="col"><span>File Size</span></th>	
 	                            </tr>
 	                        </thead>					
 	                        <tbody>

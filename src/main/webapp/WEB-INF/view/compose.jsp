@@ -14,13 +14,9 @@
 	<input type="hidden" name="uid" value="${actualmsg.UID}"/>
 </c:if>
 	<div class="mail-header" style="float: right;">
-		<a id="sendmail" class="btn btn-default btn-sm">
-			<i class="fa fa-reply"></i> <fmt:message key="menu.send"/>
-		</a>
-		<a id="savedraft" class="btn btn-default btn-sm">
-			<i class="fa fa-pencil"></i> <fmt:message key="menu.savedraft"/>
-		</a>
-		<div class="btn-group">
+		<input type="button" id="sendmail" value='<fmt:message key="menu.send"/>' class="but_gray"/> 
+		<input type="button" id="savedraft" value='<fmt:message key="menu.savedraft"/>' class="but_gray"/>
+		<%-- <div class="btn-group"><!-- 설정버튼 주석 -->
 			<a id="options" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 				<i class="fa fa-gear"></i> <span class="caret"></span>
 			</a>
@@ -54,10 +50,7 @@
 					</c:if>
 				</li>
 			</ul>
-		</div>
-		<a id="attach" class="btn btn-default btn-sm">
-			<i class="fa fa-paperclip"></i>
-		</a>
+		</div> --%>
 	</div>
 	<div class="mail-content">
 		<table class="board_width_borderNone">
@@ -106,7 +99,70 @@
 						</div>
 					</td>
 				</tr>
-				
+				<tr>
+					<th scope="row" ><label for="label_1"><fmt:message key="label.attach"/></label></th>
+					<td colspan="4" align="right">
+						<input type="button" id="attach" value='select' class="but_gray"/>
+						<input type="button" value='<fmt:message key="menu.delete"/>' onclick="javascript:delFile();" class="but_grayL"/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" ></th>
+					<td colspan="4">
+						<div id="attachments" class="form-group hidden">
+							<div class="attachments col-sm-10">
+								<input type="file" name="attachment[]" />
+							</div>
+							
+							<table class="board_type_height" id="fileTable">
+		                        <caption class="blind"></caption>
+		                        <colgroup>
+		                            <col width="40px"/>
+		                            <col width="*"/>
+		                            <col width="30%"/>
+		                        </colgroup>
+		                        <thead>
+		                            <tr>
+		                                <th scope="col" class="align_center" style="vertical-align: middle;"><img src="<c:url value='images/egovframework/com/cmm/icon/icon_check.png'/>" alt="icon_check"></th>
+		                                <th scope="col"><span>File Name</span></th>
+		                                <th scope="col"><span>File Size</span></th>	
+		                            </tr>
+		                        </thead>					
+		                        <tbody>
+		                            <tr>
+		                                <td></td>
+		                                <td></td>
+		                                <td></td>
+		                            </tr>
+		                        </tbody>
+		                    </table>
+						</div>
+						<%-- <table class="board_type_height" id="fileTable">
+		                        <caption class="blind"></caption>
+		                        <colgroup>
+		                            <col width="40px"/>
+		                            <col width="*"/>
+		                            <col width="30%"/>
+		                        </colgroup>
+		                        <thead>
+		                            <tr>
+		                                <th scope="col" class="align_center" style="vertical-align: middle;"><img src="<c:url value='images/egovframework/com/cmm/icon/icon_check.png'/>" alt="icon_check"></th>
+		                                <th scope="col"><span>File Name</span></th>
+		                                <th scope="col"><span>File Size</span></th>	
+		                            </tr>
+		                        </thead>					
+		                        <tbody>
+		                        	<c:forEach var="attach" items="${message.attachParts}" varStatus="status">
+		                            <tr>
+		                                <td>${attach.partNumber}</td>
+		                                <td><a id="att-${attach.partNumber}"><c:out value="${attach.name}"/></a></td>
+		                                <td><wma:size value="${attach.size}"/></td>
+		                            </tr>
+		                            </c:forEach>
+		                        </tbody>
+		                    </table> --%>
+					</td>
+				</tr>
 				<tr>
 					<th scope="row" ><label for="label_1"><fmt:message key="label.content"/></label></th>
 					<td colspan="4">
@@ -151,15 +207,6 @@
 				</tr>
 			</tbody>
 		</table>	
-		
-		
-		<div id="attachments" class="form-group hidden">
-			<label class="col-sm-2 control-label"><fmt:message key="label.attach"/>:</label>
-			<div class="attachments col-sm-10">
-				<input type="file" name="attachment[]" />
-			</div>
-		</div>
-	
 	</div>
 </form>
 <div class="hidden">

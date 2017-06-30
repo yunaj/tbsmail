@@ -1,6 +1,40 @@
 (function($) {
-
 $.fn.bootstrapFileInput = function( title ) {
+
+	var $this = this.addClass('btn-file-wrapper');
+
+	this.each(function(i, elem) {
+	  var input = $(elem).find(':file'),
+	      buttonWord = title || 'Add...';
+	  input.wrap('<span class="btn btn-xs btn-file"></span>');
+	  $('<span>' + buttonWord + '</span>').insertBefore(input);
+	  $('<span class="close">&times;</span>').insertAfter(input);
+	}).promise().done(function() {
+	  $this.on('change', '.btn-file :file', function(e) {
+	    if (!$(this).val()) return;
+	    var input = $(this),
+	        label = input.val().replace(/\\/g, '/').replace(/.*\//, ''),
+	        clone = input.parent().is(':last-child') ? input.parent().clone() : null,
+	        files = $(e.delegateTarget).find(':file').not(this).filter(function() { 
+	          return $(this).val() == input.val(); 
+	        });
+	    files.each(function() { $(this).parent().remove(); });
+	    input.trigger('fileselect', [1, label]).prev().text(label);
+	    if (clone) {
+	      var file = clone.find(":file");
+	      $('<input type="file" name="' + file.attr('name') + '">').insertAfter(file);
+	      file.remove();
+	      input.parent().parent().append(clone);
+	    }
+	  }).on('click', '.btn-file > .close', function() {
+	    $(this).parent().remove();
+	  });
+	});
+
+	};
+	
+	
+/*$.fn.bootstrapFileInput = function( title ) {
 
 var $this = this.addClass('btn-file-wrapper');
 
@@ -32,7 +66,7 @@ this.each(function(i, elem) {
   });
 });
 
-};
+};*/
 
 })(jQuery);
 
